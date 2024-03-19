@@ -215,6 +215,7 @@ func makeConversionContainer(pvc *v1.PersistentVolumeClaim, srcFormat, dstFormat
 			"-src-format", srcFormat,
 			"-dst-format", dstFormat,
 			"-volume-mode", string(volumeMode),
+			"-mode", "convert",
 		},
 	}
 
