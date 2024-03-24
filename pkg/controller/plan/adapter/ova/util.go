@@ -180,7 +180,7 @@ type Envelope struct {
 	References     References     `xml:"References"`
 }
 
-func WriteOvf(vm *cnv.VirtualMachine) {
+func WriteOvf(vm *cnv.VirtualMachine, diskPopulatedMap map[string]string) {
 	env := &Envelope{
 		XMLAttrOvf:     "http://schemas.dmtf.org/ovf/envelope/1",
 		XMLAttrRasd:    "http://schemas.dmtf.org/wbem/wscim/1/cim-schema/2/CIM_ResourceAllocationSettingData",
@@ -400,7 +400,7 @@ func networkSection(spec cnv.VirtualMachineInstanceSpec) (networkSection Network
 	return
 }
 
-func diskSection(vmName string, spec cnv.VirtualMachineInstanceSpec) (diskSection DiskSection, references *References) {
+func diskSection(vmName string, spec cnv.VirtualMachineInstanceSpec, diskPopulatedMap map[string]string) (diskSection DiskSection, references *References) {
 	diskSection = DiskSection{
 		Info:  "List of the virtual disks",
 		Disks: []Disk{},
